@@ -39,5 +39,6 @@ ext {
     espressoVersion = '3.2.0'
     junitVersion = '4.13'
     lifecycleExtVersion = '2.2.0'
+    moshiVersion = '1.9.3'
     retrofitVersion = '2.9.0'
 }
