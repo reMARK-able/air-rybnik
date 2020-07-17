@@ -17,7 +17,7 @@ interface GiosApiService {
 }
 
 object GiosApi {
-    val retrofiteService: GiosApiService by lazy {
+    val retrofitService: GiosApiService by lazy {
         retrofit.create(GiosApiService::class.java)
     }
 }

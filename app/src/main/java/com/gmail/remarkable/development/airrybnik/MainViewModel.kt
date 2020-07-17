@@ -20,7 +20,7 @@ class MainViewModel : ViewModel() {
     private fun getGiosPm10fromRybnik() {
         viewModelScope.launch {
             try {
-                _response.value = GiosApi.retrofiteService.getPm10fromRybnik()
+                _response.value = GiosApi.retrofitService.getPm10fromRybnik()
             } catch (e: Exception) {
                 _response.value = "Error: ${e.message}" +
                         "\n Cause: ${e.cause}"
