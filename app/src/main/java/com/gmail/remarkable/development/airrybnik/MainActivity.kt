@@ -15,9 +15,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewModel.response.observe(this, Observer { newResp ->
-            val tv = findViewById<TextView>(R.id.response_textView)
-            tv.text = newResp
+            findViewById<TextView>(R.id.type_textView).text = newResp.name
+            findViewById<TextView>(R.id.date_textView).text = newResp.values[0].date
+            findViewById<TextView>(R.id.value_textView).text = newResp.values[0].value.toString()
         })
 
+        viewModel.errorMessage.observe(this, Observer { error ->
+            error?.let {
+                findViewById<TextView>(R.id.error_textView).text = it
+            }
+        })
     }
 }
