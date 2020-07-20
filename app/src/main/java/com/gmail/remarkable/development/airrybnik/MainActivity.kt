@@ -16,8 +16,9 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.response.observe(this, Observer { newResp ->
             findViewById<TextView>(R.id.type_textView).text = newResp.name
-            findViewById<TextView>(R.id.date_textView).text = newResp.values[0].date
-            findViewById<TextView>(R.id.value_textView).text = newResp.values[0].value.toString()
+            val firstNonNull = newResp.values.firstOrNull { it.value != null }
+            findViewById<TextView>(R.id.date_textView).text = firstNonNull?.date ?: "brak danych"
+            findViewById<TextView>(R.id.value_textView).text = firstNonNull?.value.toString()
         })
 
         viewModel.errorMessage.observe(this, Observer { error ->
