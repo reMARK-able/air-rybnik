@@ -53,6 +53,9 @@ dependencies {
     //Activity
     implementation "androidx.activity:activity-ktx:$activityKtxVersion"
 
+    // Fragment
+    implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
+
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
