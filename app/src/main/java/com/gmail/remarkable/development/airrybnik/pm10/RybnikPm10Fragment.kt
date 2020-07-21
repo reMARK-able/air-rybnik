@@ -8,15 +8,15 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.gmail.remarkable.development.airrybnik.MainViewModel
 import com.gmail.remarkable.development.airrybnik.R
+import com.gmail.remarkable.development.airrybnik.RybnikPm10ViewModel
 
 /**
  * Fragment for PM10 from Rybnik
  */
 class RybnikPm10Fragment : Fragment() {
 
-    private val viewModel by viewModels<MainViewModel>()
+    private val viewModel by viewModels<RybnikPm10ViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,

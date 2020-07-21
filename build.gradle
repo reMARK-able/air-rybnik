@@ -41,5 +41,6 @@ ext {
     junitVersion = '4.13'
     lifecycleExtVersion = '2.2.0'
     moshiVersion = '1.9.3'
+    navigationVersion = '2.3.0'
     retrofitVersion = '2.9.0'
 }
