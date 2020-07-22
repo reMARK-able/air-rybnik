@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.gmail.remarkable.development.airrybnik.RybnikPm10ViewModel
 import com.gmail.remarkable.development.airrybnik.databinding.RybnikPm10FragmentBinding
-import kotlin.math.roundToInt
 
 /**
  * Fragment for PM10 from Rybnik
@@ -27,20 +25,9 @@ class RybnikPm10Fragment : Fragment() {
     ): View? {
         viewDataBinding = RybnikPm10FragmentBinding.inflate(inflater, container, false)
 
-        viewModel.response.observe(viewLifecycleOwner, Observer { newResp ->
-            viewDataBinding.whatTextView.text = newResp.name
-            val firstNonNull = newResp.values.firstOrNull { it.value != null }
-            viewDataBinding.whenTextView.text =
-                firstNonNull?.date ?: "brak danych"
-            viewDataBinding.howManyTextView.text =
-                firstNonNull?.value?.roundToInt().toString()
-        })
+        viewDataBinding.viewModel = viewModel
 
-        viewModel.errorMessage.observe(viewLifecycleOwner, Observer { error ->
-            error?.let {
-                viewDataBinding.errorTextView.text = it
-            }
-        })
+        viewDataBinding.lifecycleOwner = viewLifecycleOwner
 
         return viewDataBinding.root
     }

@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="response"
-            type="com.gmail.remarkable.development.airrybnik.network.GiosSensorData" />
+            name="viewModel"
+            type="com.gmail.remarkable.development.airrybnik.RybnikPm10ViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,6 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_large"
             android:layout_marginTop="@dimen/margin_large"
+            android:text="@{viewModel.response.name}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintStart_toEndOf="@id/labels_barrier"
             app:layout_constraintTop_toBottomOf="@+id/where_textView"
@@ -76,6 +77,7 @@
             android:layout_marginStart="@dimen/margin_large"
             android:layout_marginTop="@dimen/margin_large"
             android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            app:firstNonNullValueString="@{viewModel.response}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/labels_barrier"
@@ -99,6 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_large"
             android:layout_marginTop="@dimen/margin_large"
+            app:firstNonNullDateString="@{viewModel.response}"
             app:layout_constraintStart_toEndOf="@id/labels_barrier"
             app:layout_constraintTop_toBottomOf="@+id/howMany_textView"
             tools:text="2020-10-18 14:00:00" />
@@ -110,6 +113,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
+            android:text="@{viewModel.errorMessage}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
