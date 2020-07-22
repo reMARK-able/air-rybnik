@@ -8,7 +8,7 @@ import com.gmail.remarkable.development.airrybnik.network.GiosApi
 import com.gmail.remarkable.development.airrybnik.network.GiosSensorData
 import kotlinx.coroutines.launch
 
-class MainViewModel : ViewModel() {
+class RybnikPm10ViewModel : ViewModel() {
 
     private val _response = MutableLiveData<GiosSensorData>()
     val response: LiveData<GiosSensorData>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.gmail.remarkable.development.airrybnik.RybnikPm10ViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/where_label_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:text="@string/where_label"
+            app:layout_constraintBaseline_toBaselineOf="@+id/where_textView"
+            app:layout_constraintEnd_toStartOf="@id/labels_barrier"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/where_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:text="@string/rybnik"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toEndOf="@id/labels_barrier"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/what_label_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:text="@string/what_label"
+            app:layout_constraintBaseline_toBaselineOf="@+id/what_textView"
+            app:layout_constraintEnd_toStartOf="@id/labels_barrier"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/what_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:text="@{viewModel.response.name}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toEndOf="@id/labels_barrier"
+            app:layout_constraintTop_toBottomOf="@+id/where_textView"
+            tools:text="PM10" />
+
+        <TextView
+            android:id="@+id/howMany_label_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:text="@string/howMany_label"
+            app:layout_constraintBaseline_toBaselineOf="@+id/howMany_textView"
+            app:layout_constraintEnd_toStartOf="@id/labels_barrier"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/howMany_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            app:firstNonNullValueString="@{viewModel.response}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/labels_barrier"
+            app:layout_constraintTop_toBottomOf="@+id/what_textView"
+            tools:text="68.78833" />
+
+        <TextView
+            android:id="@+id/when_label_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:text="@string/when_label"
+            app:layout_constraintBaseline_toBaselineOf="@+id/when_textView"
+            app:layout_constraintEnd_toStartOf="@id/labels_barrier"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/when_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_large"
+            app:firstNonNullDateString="@{viewModel.response}"
+            app:layout_constraintStart_toEndOf="@id/labels_barrier"
+            app:layout_constraintTop_toBottomOf="@+id/howMany_textView"
+            tools:text="2020-10-18 14:00:00" />
+
+        <TextView
+            android:id="@+id/error_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@{viewModel.errorMessage}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Some error occurred" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/labels_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="where_label_textView,what_label_textView,howMany_label_textView,when_label_textView"
+            tools:layout_editor_absoluteX="55dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

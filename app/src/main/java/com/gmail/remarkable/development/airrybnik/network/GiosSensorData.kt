@@ -12,3 +12,5 @@ data class SensorValue(
     val date: String,
     val value: Double?
 )
+
+fun GiosSensorData.firstNonNull() = this.values.firstOrNull { it.value != null }
