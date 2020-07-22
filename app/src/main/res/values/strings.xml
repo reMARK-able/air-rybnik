@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Air Rybnik</string>
+    <string name="where_label">Gdzie:</string>
+    <string name="rybnik">Rybnik</string>
+    <string name="what_label">Co:</string>
+    <string name="howMany_label">Ile:</string>
+    <string name="when_label">Kiedy:</string>
 </resources>

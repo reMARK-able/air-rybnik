@@ -26,11 +26,11 @@ class RybnikPm10Fragment : Fragment() {
         val root = inflater.inflate(R.layout.rybnik_pm10_fragment, container, false)
 
         viewModel.response.observe(viewLifecycleOwner, Observer { newResp ->
-            root.findViewById<TextView>(R.id.type_textView).text = newResp.name
+            root.findViewById<TextView>(R.id.what_textView).text = newResp.name
             val firstNonNull = newResp.values.firstOrNull { it.value != null }
-            root.findViewById<TextView>(R.id.date_textView).text =
+            root.findViewById<TextView>(R.id.when_textView).text =
                 firstNonNull?.date ?: "brak danych"
-            root.findViewById<TextView>(R.id.value_textView).text = firstNonNull?.value.toString()
+            root.findViewById<TextView>(R.id.howMany_textView).text = firstNonNull?.value.toString()
         })
 
         viewModel.errorMessage.observe(viewLifecycleOwner, Observer { error ->
