@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.gmail.remarkable.development.airrybnik.R
 import com.gmail.remarkable.development.airrybnik.RybnikPm10ViewModel
+import kotlin.math.roundToInt
 
 /**
  * Fragment for PM10 from Rybnik
@@ -30,7 +31,8 @@ class RybnikPm10Fragment : Fragment() {
             val firstNonNull = newResp.values.firstOrNull { it.value != null }
             root.findViewById<TextView>(R.id.when_textView).text =
                 firstNonNull?.date ?: "brak danych"
-            root.findViewById<TextView>(R.id.howMany_textView).text = firstNonNull?.value.toString()
+            root.findViewById<TextView>(R.id.howMany_textView).text =
+                firstNonNull?.value?.roundToInt().toString()
         })
 
         viewModel.errorMessage.observe(viewLifecycleOwner, Observer { error ->
