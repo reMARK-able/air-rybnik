@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.gmail.remarkable.development.airrybnik.RybnikPm10ViewModel
 import com.gmail.remarkable.development.airrybnik.databinding.RybnikPm10FragmentBinding
 
 /**

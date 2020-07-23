@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.gmail.remarkable.development.airrybnik.RybnikPm10ViewModel" />
+            type="com.gmail.remarkable.development.airrybnik.pm10.RybnikPm10ViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

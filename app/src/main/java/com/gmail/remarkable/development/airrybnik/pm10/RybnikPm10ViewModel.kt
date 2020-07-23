@@ -1,4 +1,4 @@
-package com.gmail.remarkable.development.airrybnik
+package com.gmail.remarkable.development.airrybnik.pm10
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
