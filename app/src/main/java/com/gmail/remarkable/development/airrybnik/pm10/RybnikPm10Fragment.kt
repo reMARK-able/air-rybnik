@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.gmail.remarkable.development.airrybnik.databinding.RybnikPm10FragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Fragment for PM10 from Rybnik
  */
+@AndroidEntryPoint
 class RybnikPm10Fragment : Fragment() {
 
     private val viewModel by viewModels<RybnikPm10ViewModel>()
