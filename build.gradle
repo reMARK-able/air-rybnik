@@ -46,4 +46,5 @@ ext {
     moshiVersion = '1.9.3'
     navigationVersion = '2.3.0'
     retrofitVersion = '2.9.0'
+    roomVersion = '2.2.5'
 }
