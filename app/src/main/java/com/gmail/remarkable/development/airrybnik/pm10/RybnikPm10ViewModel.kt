@@ -7,7 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gmail.remarkable.development.airrybnik.database.SensorDatabase
 import com.gmail.remarkable.development.airrybnik.network.GiosApiService
-import com.gmail.remarkable.development.airrybnik.network.GiosSensorData
+import com.gmail.remarkable.development.airrybnik.network.asDatabaseSensorValue
+import com.gmail.remarkable.development.airrybnik.network.firstNonNull
 import kotlinx.coroutines.launch
 
 class RybnikPm10ViewModel @ViewModelInject constructor(
@@ -22,10 +23,13 @@ class RybnikPm10ViewModel @ViewModelInject constructor(
         get() = _errorMessage
 
 
-    private fun getGiosPm10fromRybnik() {
+    fun getGiosPm10fromRybnik() {
         viewModelScope.launch {
             try {
-                _response.value = giosApiService.getPm10fromRybnik()
+                val response = giosApiService.getPm10fromRybnik()
+                response.firstNonNull()?.let {
+                    database.sensorDao().insert(it.asDatabaseSensorValue())
+                }
             } catch (e: Exception) {
                 _errorMessage.value = "Error: ${e.message}" +
                         "\n Cause: ${e.cause}"

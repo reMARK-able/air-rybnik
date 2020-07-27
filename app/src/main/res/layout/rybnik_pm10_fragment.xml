@@ -128,5 +128,17 @@
             app:constraint_referenced_ids="where_label_textView,what_label_textView,howMany_label_textView,when_label_textView"
             tools:layout_editor_absoluteX="55dp" />
 
+        <ImageButton
+            android:id="@+id/syncButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:contentDescription="@string/refresh_button_description"
+            android:onClick="@{() -> viewModel.getGiosPm10fromRybnik()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_popup_sync" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
