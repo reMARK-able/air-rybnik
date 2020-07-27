@@ -5,12 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gmail.remarkable.development.airrybnik.database.SensorDatabase
 import com.gmail.remarkable.development.airrybnik.network.GiosApiService
 import com.gmail.remarkable.development.airrybnik.network.GiosSensorData
 import kotlinx.coroutines.launch
 
 class RybnikPm10ViewModel @ViewModelInject constructor(
-    private val giosApiService: GiosApiService
+    private val giosApiService: GiosApiService,
+    private val database: SensorDatabase
 ) : ViewModel() {
 
     private val _response = MutableLiveData<GiosSensorData>()
