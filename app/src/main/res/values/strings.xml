@@ -5,4 +5,6 @@
     <string name="what_label">Co:</string>
     <string name="howMany_label">Ile:</string>
     <string name="when_label">Kiedy:</string>
+    <string name="pm10_label">PM10</string>
+    <string name="refresh_button_description">Odśwież</string>
 </resources>
