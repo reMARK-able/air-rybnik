@@ -15,17 +15,12 @@ class RybnikPm10ViewModel @ViewModelInject constructor(
     private val database: SensorDatabase
 ) : ViewModel() {
 
-    private val _response = MutableLiveData<GiosSensorData>()
-    val response: LiveData<GiosSensorData>
-        get() = _response
+    val response = database.sensorDao().getLatest()
 
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String>
         get() = _errorMessage
 
-    init {
-        getGiosPm10fromRybnik()
-    }
 
     private fun getGiosPm10fromRybnik() {
         viewModelScope.launch {
