@@ -22,10 +22,14 @@ class RybnikPm10ViewModel @ViewModelInject constructor(
     val errorMessage: LiveData<String>
         get() = _errorMessage
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
 
     fun getGiosPm10fromRybnik() {
         viewModelScope.launch {
             try {
+                _isLoading.value = true
                 val response = giosApiService.getPm10fromRybnik()
                 response.firstNonNull()?.let {
                     database.sensorDao().insert(it.asDatabaseSensorValue())
@@ -33,8 +37,9 @@ class RybnikPm10ViewModel @ViewModelInject constructor(
             } catch (e: Exception) {
                 _errorMessage.value = "Error: ${e.message}" +
                         "\n Cause: ${e.cause}"
+            } finally {
+                _isLoading.value = false
             }
         }
-
     }
 }

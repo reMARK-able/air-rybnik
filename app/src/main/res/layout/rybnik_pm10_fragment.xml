@@ -136,9 +136,21 @@
             android:layout_marginEnd="@dimen/margin_large"
             android:contentDescription="@string/refresh_button_description"
             android:onClick="@{() -> viewModel.getGiosPm10fromRybnik()}"
+            app:hideRefreshButton="@{viewModel.isLoading}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@android:drawable/ic_popup_sync" />
+
+        <ProgressBar
+            android:id="@+id/loading_spinner"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/syncButton"
+            app:layout_constraintEnd_toEndOf="@+id/syncButton"
+            app:layout_constraintStart_toStartOf="@+id/syncButton"
+            app:layout_constraintTop_toTopOf="@+id/syncButton"
+            app:showSpinner="@{viewModel.isLoading}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
