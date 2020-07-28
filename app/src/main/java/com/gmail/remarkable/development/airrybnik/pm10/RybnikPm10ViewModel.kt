@@ -5,10 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gmail.remarkable.development.airrybnik.database.SensorDatabase
-import com.gmail.remarkable.development.airrybnik.network.GiosApiService
-import com.gmail.remarkable.development.airrybnik.network.asDatabaseSensorValue
-import com.gmail.remarkable.development.airrybnik.network.firstNonNull
+import com.gmail.remarkable.development.airrybnik.data.database.SensorDatabase
+import com.gmail.remarkable.development.airrybnik.data.network.GiosApiService
+import com.gmail.remarkable.development.airrybnik.data.network.asDatabaseSensorValue
+import com.gmail.remarkable.development.airrybnik.data.network.firstNonNull
 import kotlinx.coroutines.launch
 
 class RybnikPm10ViewModel @ViewModelInject constructor(

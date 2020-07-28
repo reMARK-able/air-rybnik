@@ -2,8 +2,8 @@ package com.gmail.remarkable.development.airrybnik.di
 
 import android.content.Context
 import androidx.room.Room
-import com.gmail.remarkable.development.airrybnik.database.SensorDatabase
-import com.gmail.remarkable.development.airrybnik.network.GiosApiService
+import com.gmail.remarkable.development.airrybnik.data.database.SensorDatabase
+import com.gmail.remarkable.development.airrybnik.data.network.GiosApiService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module

@@ -1,8 +1,8 @@
-package com.gmail.remarkable.development.airrybnik.database
+package com.gmail.remarkable.development.airrybnik.data.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.gmail.remarkable.development.airrybnik.network.SensorValue
+import com.gmail.remarkable.development.airrybnik.data.network.SensorValue
 
 @Entity
 data class DatabaseSensorValue(

@@ -5,7 +5,7 @@ import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.gmail.remarkable.development.airrybnik.database.DatabaseSensorValue
+import com.gmail.remarkable.development.airrybnik.data.database.DatabaseSensorValue
 import kotlin.math.roundToInt
 
 @BindingAdapter("valueString")
