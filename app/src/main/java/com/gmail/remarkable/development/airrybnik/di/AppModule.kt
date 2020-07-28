@@ -2,6 +2,7 @@ package com.gmail.remarkable.development.airrybnik.di
 
 import android.content.Context
 import androidx.room.Room
+import com.gmail.remarkable.development.airrybnik.data.Repository
 import com.gmail.remarkable.development.airrybnik.data.database.SensorDatabase
 import com.gmail.remarkable.development.airrybnik.data.network.GiosApiService
 import com.squareup.moshi.Moshi
@@ -44,5 +45,14 @@ object AppModule {
             SensorDatabase::class.java,
             "Sensor.db"
         ).build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideRepository(
+        database: SensorDatabase,
+        giosApiService: GiosApiService
+    ): Repository {
+        return Repository(database.sensorDao(), giosApiService)
     }
 }
