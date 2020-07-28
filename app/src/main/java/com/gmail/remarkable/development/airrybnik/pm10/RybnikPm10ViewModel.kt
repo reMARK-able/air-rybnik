@@ -5,18 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gmail.remarkable.development.airrybnik.data.database.SensorDatabase
-import com.gmail.remarkable.development.airrybnik.data.network.GiosApiService
-import com.gmail.remarkable.development.airrybnik.data.network.asDatabaseSensorValue
-import com.gmail.remarkable.development.airrybnik.data.network.firstNonNull
+import com.gmail.remarkable.development.airrybnik.data.Repository
 import kotlinx.coroutines.launch
 
 class RybnikPm10ViewModel @ViewModelInject constructor(
-    private val giosApiService: GiosApiService,
-    private val database: SensorDatabase
+    private val repository: Repository
 ) : ViewModel() {
 
-    val response = database.sensorDao().getLatest()
+    val response = repository.observeLatest()
 
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String>
@@ -30,13 +26,10 @@ class RybnikPm10ViewModel @ViewModelInject constructor(
         viewModelScope.launch {
             try {
                 _isLoading.value = true
-                val response = giosApiService.getPm10fromRybnik()
-                response.firstNonNull()?.let {
-                    database.sensorDao().insert(it.asDatabaseSensorValue())
-                }
-            } catch (e: Exception) {
-                _errorMessage.value = "Error: ${e.message}" +
-                        "\n Cause: ${e.cause}"
+                repository.refreshData()
+            } catch (cause: Throwable) {
+                _errorMessage.value = "${cause.message}" +
+                        "\n${cause.cause}"
             } finally {
                 _isLoading.value = false
             }
