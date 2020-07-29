@@ -1,6 +1,6 @@
-package com.gmail.remarkable.development.airrybnik.network
+package com.gmail.remarkable.development.airrybnik.data.network
 
-import com.gmail.remarkable.development.airrybnik.database.DatabaseSensorValue
+import com.gmail.remarkable.development.airrybnik.data.database.DatabaseSensorValue
 import com.squareup.moshi.Json
 
 data class GiosSensorData(

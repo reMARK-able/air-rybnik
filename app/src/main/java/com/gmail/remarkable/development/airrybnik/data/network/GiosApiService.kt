@@ -1,4 +1,4 @@
-package com.gmail.remarkable.development.airrybnik.network
+package com.gmail.remarkable.development.airrybnik.data.network
 
 import retrofit2.http.GET
 

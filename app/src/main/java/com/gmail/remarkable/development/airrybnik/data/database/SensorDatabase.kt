@@ -1,4 +1,4 @@
-package com.gmail.remarkable.development.airrybnik.database
+package com.gmail.remarkable.development.airrybnik.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
