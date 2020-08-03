@@ -47,4 +47,5 @@ ext {
     navigationVersion = '2.3.0'
     retrofitVersion = '2.9.0'
     roomVersion = '2.2.5'
+    workVersion = '2.4.0'
 }
