@@ -7,4 +7,6 @@
     <string name="when_label">Kiedy:</string>
     <string name="pm10_label">PM10</string>
     <string name="refresh_button_description">Odśwież</string>
+    <string name="dataUpdate_notification_channel_id" translatable="false">dataUpdate_channel</string>
+    <string name="dataUpdate_notification_channel_name" translatable="true">Nowe Dane</string>
 </resources>
