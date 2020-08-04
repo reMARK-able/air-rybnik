@@ -8,7 +8,6 @@ import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -36,14 +35,10 @@ class AirRybnikApplication : Application(), Configuration.Provider {
             .setRequiredNetworkType(NetworkType.CONNECTED)
             .build()
 
-        val calendar = Calendar.getInstance()
-        val delayMinutes = (60 - (calendar.get(Calendar.MINUTE)) + 20).toLong()
         val repeatingRequest = PeriodicWorkRequestBuilder<FetchDataWorker>(
-            1, TimeUnit.HOURS
+            30, TimeUnit.MINUTES
         )
-            //.setInitialDelay(delayMinutes, TimeUnit.MINUTES)
             .addTag(FetchDataWorker.WORK_NAME)
-            .setInitialDelay(delayMinutes, TimeUnit.MINUTES)
             .setConstraints(constraints)
             .build()
 
