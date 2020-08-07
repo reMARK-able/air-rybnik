@@ -27,10 +27,13 @@ fun NotificationManager.sendNotification(message: String, applicationContext: Co
 /**
  * Sends testing notification
  */
-fun sendNewDataNotification(appContext: Context) {
+fun sendNewDataNotification(
+    appContext: Context,
+    value: String
+) {
     val notificationManager = ContextCompat.getSystemService(
         appContext,
         NotificationManager::class.java
     ) as NotificationManager
-    notificationManager.sendNotification("test powiadomienia", appContext)
+    notificationManager.sendNotification("PM10 wynosi: $value", appContext)
 }

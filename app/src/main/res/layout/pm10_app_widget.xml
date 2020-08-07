@@ -40,6 +40,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="4dp"
-        android:text="2020–10–18 14:00:00"
+        tools:text="brak"
         android:textSize="@dimen/widget_text_size_small" />
 </LinearLayout>
