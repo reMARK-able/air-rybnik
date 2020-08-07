@@ -9,5 +9,4 @@
     <string name="refresh_button_description">Odśwież</string>
     <string name="dataUpdate_notification_channel_id" translatable="false">dataUpdate_channel</string>
     <string name="dataUpdate_notification_channel_name" translatable="true">Nowe Dane</string>
-    <string name="appwidget_text">EXAMPLE</string>
 </resources>
