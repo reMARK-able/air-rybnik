@@ -13,7 +13,10 @@ interface SensorDao {
     suspend fun update(sensorValue: DatabaseSensorValue)
 
     @Query("SELECT * FROM DatabaseSensorValue WHERE id = :latest")
-    fun getLatest(latest: String = "latest"): LiveData<DatabaseSensorValue>
+    fun observeLatest(latest: String = "latest"): LiveData<DatabaseSensorValue>
+
+    @Query("SELECT * FROM DatabaseSensorValue WHERE id = :latest")
+    suspend fun getLatest(latest: String = "latest"): DatabaseSensorValue?
 
     @Query("DELETE FROM DatabaseSensorValue")
     suspend fun deleteAll()

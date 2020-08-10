@@ -6,7 +6,11 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.RemoteViews
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
 import com.gmail.remarkable.development.airrybnik.R
+import com.gmail.remarkable.development.airrybnik.data.workers.UpdateAppWidgetWorker
 
 class Pm10AppWidget : AppWidgetProvider() {
 
@@ -31,9 +35,12 @@ class Pm10AppWidget : AppWidgetProvider() {
         appWidgetIds: IntArray
     ) {
         Log.d("PM10AppWidget", "onUpdate called")
-        // There may be multiple widgets active, so update all of them
-        for (appWidgetId in appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId, value, date)
+        if (value == null || date == null) getFromDatabase(context)
+        else {
+            // There may be multiple widgets active, so update all of them
+            for (appWidgetId in appWidgetIds) {
+                updateAppWidget(context, appWidgetManager, appWidgetId, value, date)
+            }
         }
     }
 
@@ -43,6 +50,18 @@ class Pm10AppWidget : AppWidgetProvider() {
 
     override fun onDisabled(context: Context) {
         // Enter relevant functionality for when the last widget is disabled
+    }
+
+    private fun getFromDatabase(context: Context) {
+        val updateAppWidgetWork = OneTimeWorkRequest.Builder(UpdateAppWidgetWorker::class.java)
+            .addTag(UpdateAppWidgetWorker.WORK_NAME)
+            .build()
+
+        WorkManager.getInstance(context).enqueueUniqueWork(
+            UpdateAppWidgetWorker.WORK_NAME,
+            ExistingWorkPolicy.KEEP,
+            updateAppWidgetWork
+        )
     }
 }
 
