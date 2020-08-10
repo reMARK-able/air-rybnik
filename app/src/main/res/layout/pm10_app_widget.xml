@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/widget_where_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/rybnik"
+        android:textSize="@dimen/app_widget_text_size" />
+
+    <TextView
+        android:id="@+id/widget_what_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="@string/pm10_label"
+        android:textSize="@dimen/app_widget_text_size" />
+
+    <TextView
+        android:id="@+id/widget_howMany_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        tools:text="450" />
+
+    <TextView
+        android:id="@+id/widget_when_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="4dp"
+        tools:text="brak"
+        android:textSize="@dimen/widget_text_size_small" />
+</LinearLayout>
