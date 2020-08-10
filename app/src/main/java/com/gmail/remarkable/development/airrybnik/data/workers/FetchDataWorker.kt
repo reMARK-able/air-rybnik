@@ -3,12 +3,11 @@ package com.gmail.remarkable.development.airrybnik.data.workers
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
-import android.widget.RemoteViews
+import android.content.Intent
 import androidx.hilt.Assisted
 import androidx.hilt.work.WorkerInject
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.gmail.remarkable.development.airrybnik.R
 import com.gmail.remarkable.development.airrybnik.appwidget.Pm10AppWidget
 import com.gmail.remarkable.development.airrybnik.data.Repository
 import com.gmail.remarkable.development.airrybnik.util.sendNewDataNotification
@@ -48,13 +47,17 @@ class FetchDataWorker @WorkerInject constructor(
     }
 
     private fun notifyAppWidget(value: String, date: String) {
-        val views = RemoteViews(appContext.packageName, R.layout.pm10_app_widget)
-        views.setTextViewText(R.id.widget_howMany_textView, value)
-        views.setTextViewText(R.id.widget_when_textView, date)
         val appWidgetManager = AppWidgetManager.getInstance(appContext)
-        appWidgetManager.updateAppWidget(
-            ComponentName(appContext, Pm10AppWidget::class.java),
-            views
-        )
+        val widgetIds =
+            appWidgetManager.getAppWidgetIds(ComponentName(appContext, Pm10AppWidget::class.java))
+
+        val intent = Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE).apply {
+            putExtra(Pm10AppWidget.INTENT_SENSOR_DATE, date)
+            putExtra(Pm10AppWidget.INTENT_SENSOR_VALUE, value)
+            putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, widgetIds)
+        }
+
+        appContext.sendBroadcast(intent)
+
     }
 }
