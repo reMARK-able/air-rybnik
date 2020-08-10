@@ -14,6 +14,10 @@ class Repository(
 ) {
 
     fun observeLatest(): LiveData<DatabaseSensorValue> {
+        return sensorDao.observeLatest()
+    }
+
+    suspend fun getLatest(): DatabaseSensorValue? {
         return sensorDao.getLatest()
     }
 
