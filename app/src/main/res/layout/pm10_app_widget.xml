@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/rybnik"
+        android:textColor="@android:color/secondary_text_dark"
         android:textSize="@dimen/app_widget_text_size" />
 
     <TextView
@@ -22,6 +23,7 @@
         android:layout_marginTop="4dp"
         android:gravity="center"
         android:text="@string/pm10_label"
+        android:textColor="@android:color/secondary_text_dark"
         android:textSize="@dimen/app_widget_text_size" />
 
     <TextView
@@ -32,6 +34,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/secondary_text_light"
         tools:text="450" />
 
     <TextView
@@ -40,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="4dp"
-        tools:text="brak"
-        android:textSize="@dimen/widget_text_size_small" />
+        android:textColor="@android:color/secondary_text_dark"
+        android:textSize="@dimen/widget_text_size_small"
+        tools:text="brak" />
 </LinearLayout>
