@@ -51,7 +51,8 @@ class FetchDataWorker @WorkerInject constructor(
         val widgetIds =
             appWidgetManager.getAppWidgetIds(ComponentName(appContext, Pm10AppWidget::class.java))
 
-        val intent = Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE).apply {
+        val intent = Intent(appContext, Pm10AppWidget::class.java).apply {
+            action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
             putExtra(Pm10AppWidget.INTENT_SENSOR_DATE, date)
             putExtra(Pm10AppWidget.INTENT_SENSOR_VALUE, value)
             putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, widgetIds)
