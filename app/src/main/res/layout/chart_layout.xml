@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/chart_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/pie_chart_circle_background_for_elevation"
+    android:elevation="16dp">
 
     <ProgressBar
         android:id="@+id/background_progressbar"
