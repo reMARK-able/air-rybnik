@@ -38,14 +38,15 @@
             android:layout_height="match_parent"
             android:indeterminate="false"
             android:max="100"
-            android:progress="70"
+            android:progress="0"
             android:progressDrawable="@drawable/chart_progress"
             app:chartProgress="@{viewModel.response}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:progress="70" />
 
         <TextView
             android:id="@+id/percentage_textView"
@@ -54,13 +55,13 @@
             android:background="@drawable/pie_chart_circle_top"
             android:elevation="8dp"
             android:gravity="center"
-            app:layout_constraintHeight_percent="0.5"
-            app:layout_constraintWidth_percent="0.5"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5"
             app:percentageString="@{viewModel.response}"
             tools:text="70%" />
     </androidx.constraintlayout.widget.ConstraintLayout>
