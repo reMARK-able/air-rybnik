@@ -1,14 +1,20 @@
 package com.gmail.remarkable.development.airrybnik.pm10
 
+import android.animation.AnimatorSet
+import android.animation.ArgbEvaluator
 import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
+import android.content.res.ColorStateList
 import android.view.View
 import android.view.animation.LinearInterpolator
 import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.gmail.remarkable.development.airrybnik.R
 import com.gmail.remarkable.development.airrybnik.data.database.DatabaseSensorValue
+import com.gmail.remarkable.development.airrybnik.util.getIndicatorProgressColor
 import kotlin.math.roundToInt
 
 @BindingAdapter("valueString")
@@ -49,10 +55,20 @@ fun ProgressBar.showSpinner(isLoading: Boolean) {
 fun ProgressBar.setChartProgress(response: DatabaseSensorValue?) {
     response?.let {
         val percentage = (response.value?.roundToInt()?.times(100)?.div(50)) ?: 0
-        val animator = ObjectAnimator.ofInt(this, "progress", 0, percentage)
-        animator.interpolator = LinearInterpolator()
-        animator.duration = 600
-        animator.start()
+        val percentAnimator = ObjectAnimator.ofInt(this, "progress", 0, percentage)
+        val fromColor = ContextCompat.getColor(context, R.color.colorIndicator_0)
+        val toColor = ContextCompat.getColor(context, getIndicatorProgressColor(percentage))
+        val colorAnimator = ValueAnimator.ofObject(ArgbEvaluator(), fromColor, toColor)
+        colorAnimator.duration = 600
+        colorAnimator.addUpdateListener {
+            progressTintList = ColorStateList.valueOf(it.animatedValue as Int)
+        }
+        percentAnimator.interpolator = LinearInterpolator()
+        percentAnimator.duration = 600
+        AnimatorSet().apply {
+            playTogether(percentAnimator, colorAnimator)
+            start()
+        }
     }
 }
 
