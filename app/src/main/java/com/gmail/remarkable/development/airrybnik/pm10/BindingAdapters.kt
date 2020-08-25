@@ -48,7 +48,7 @@ fun ProgressBar.showSpinner(isLoading: Boolean) {
 @BindingAdapter("chartProgress")
 fun ProgressBar.setChartProgress(response: DatabaseSensorValue?) {
     response?.let {
-        val percentage = (response.value?.times(100)?.div(50))?.toInt() ?: 0
+        val percentage = (response.value?.roundToInt()?.times(100)?.div(50)) ?: 0
         val animator = ObjectAnimator.ofInt(this, "progress", 0, percentage)
         animator.interpolator = LinearInterpolator()
         animator.duration = 600
@@ -59,7 +59,7 @@ fun ProgressBar.setChartProgress(response: DatabaseSensorValue?) {
 @BindingAdapter("percentageString")
 fun TextView.setPercentageString(response: DatabaseSensorValue?) {
     response?.let {
-        val percentage = (response.value?.times(100)?.div(50))?.toInt() ?: 0
+        val percentage = (response.value?.roundToInt()?.times(100)?.div(50)) ?: 0
         text = context.getString(R.string.percentage_value, percentage)
     }
 }
