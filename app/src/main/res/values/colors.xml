@@ -20,4 +20,10 @@
     <color name="colorIndicator_80">#cecb41</color>
     <color name="colorIndicator_90">#decf3d</color>
     <color name="colorIndicator_100">#fdd835</color>
+    <!-- value above 160% - air quality index - SUFFICIENT-->
+    <color name="colorIndicator_index_sufficient">#fd7435</color>
+    <!-- value above 220% - air quality index - BAD -->
+    <color name="colorIndicator_index_bad">#e30038</color>
+    <!--    value above 300% - air quality index - VERY BAD-->
+    <color name="colorIndicator_index_veryBad">#8f0038</color>
 </resources>

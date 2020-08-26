@@ -6,17 +6,20 @@ import com.gmail.remarkable.development.airrybnik.R
  * Returns appropriate color based on the progress value.
  */
 fun getIndicatorProgressColor(progress: Int): Int {
-    return when (progress / 10) {
-        0 -> R.color.colorIndicator_0
-        1 -> R.color.colorIndicator_10
-        2 -> R.color.colorIndicator_20
-        3 -> R.color.colorIndicator_30
-        4 -> R.color.colorIndicator_40
-        5 -> R.color.colorIndicator_50
-        6 -> R.color.colorIndicator_60
-        7 -> R.color.colorIndicator_70
-        8 -> R.color.colorIndicator_80
-        9 -> R.color.colorIndicator_90
-        else -> R.color.colorIndicator_100
+    return when (progress) {
+        in 0..9 -> R.color.colorIndicator_0
+        in 10..19 -> R.color.colorIndicator_10
+        in 20..29 -> R.color.colorIndicator_20
+        in 30..39 -> R.color.colorIndicator_30
+        in 40..49 -> R.color.colorIndicator_40
+        in 50..59 -> R.color.colorIndicator_50
+        in 60..69 -> R.color.colorIndicator_60
+        in 70..79 -> R.color.colorIndicator_70
+        in 80..89 -> R.color.colorIndicator_80
+        in 90..99 -> R.color.colorIndicator_90
+        in 100..160 -> R.color.colorIndicator_100
+        in 161..220 -> R.color.colorIndicator_index_sufficient
+        in 221..300 -> R.color.colorIndicator_index_bad
+        else -> R.color.colorIndicator_index_veryBad
     }
 }
