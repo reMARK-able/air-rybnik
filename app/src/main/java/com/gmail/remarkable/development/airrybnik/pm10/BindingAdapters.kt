@@ -55,11 +55,12 @@ fun ProgressBar.showSpinner(isLoading: Boolean) {
 fun ProgressBar.setChartProgress(response: DatabaseSensorValue?) {
     response?.let {
         val percentage = (response.value?.roundToInt()?.times(100)?.div(50)) ?: 0
-        val percentAnimator = ObjectAnimator.ofInt(this, "progress", 0, percentage)
+        val percForAnim = if (percentage > 100) 100 else percentage
+        val percentAnimator = ObjectAnimator.ofInt(this, "progress", 0, percForAnim)
         val fromColor = ContextCompat.getColor(context, R.color.colorIndicator_0)
         val toColor = ContextCompat.getColor(context, getIndicatorProgressColor(percentage))
         val colorAnimator = ValueAnimator.ofObject(ArgbEvaluator(), fromColor, toColor)
-        colorAnimator.duration = 600
+        colorAnimator.duration = 1200
         colorAnimator.addUpdateListener {
             progressTintList = ColorStateList.valueOf(it.animatedValue as Int)
         }
