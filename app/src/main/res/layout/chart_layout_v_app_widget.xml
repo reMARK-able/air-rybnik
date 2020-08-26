@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_chart_container"
+    android:layout_width="110dp"
+    android:layout_height="110dp"
+    android:layout_gravity="center"
+    android:background="@drawable/pie_chart_circle_background_for_elevation"
+    android:elevation="16dp">
+
+    <ProgressBar
+        android:id="@+id/widget_background_progressbar"
+        style="@android:style/Widget.Material.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="100"
+        android:progressDrawable="@drawable/chart_full" />
+
+    <ProgressBar
+        android:id="@+id/widget_percentage_progressbar"
+        style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="0"
+        android:progressDrawable="@drawable/chart_progress"
+        tools:progress="70" />
+
+    <TextView
+        android:id="@+id/widget_percentage_textView"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/pie_chart_circle_top"
+        android:elevation="8dp"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="20sp"
+        tools:text="170%" />
+
+</RelativeLayout>
