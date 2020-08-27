@@ -13,7 +13,6 @@ import com.gmail.remarkable.development.airrybnik.data.Repository
 import com.gmail.remarkable.development.airrybnik.util.setupRemoteViewsForUpdate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlin.math.roundToInt
 
 class UpdateAppWidgetWorker @WorkerInject constructor(
     @Assisted private val appContext: Context,
@@ -29,9 +28,9 @@ class UpdateAppWidgetWorker @WorkerInject constructor(
         return withContext(Dispatchers.IO) {
             try {
                 repository.getLatest()?.let {
-                    val valueString = it.value?.roundToInt().toString()
-                    val dateString = it.date.substringBeforeLast(":")
-                    notifyAppWidget(valueString, dateString)
+                    val value = it.value ?: 0.0
+                    val dateString = it.date
+                    notifyAppWidget(value, dateString)
                 }
                 Result.success()
             } catch (e: Throwable) {
@@ -41,7 +40,7 @@ class UpdateAppWidgetWorker @WorkerInject constructor(
         }
     }
 
-    private fun notifyAppWidget(value: String, date: String) {
+    private fun notifyAppWidget(value: Double, date: String) {
         val views = setupRemoteViewsForUpdate(value, date, appContext)
         val appWidgetManager = AppWidgetManager.getInstance(appContext)
         appWidgetManager.updateAppWidget(

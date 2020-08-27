@@ -29,7 +29,7 @@ fun NotificationManager.sendNotification(message: String, applicationContext: Co
  */
 fun sendNewDataNotification(
     appContext: Context,
-    value: String
+    value: Double
 ) {
     val notificationManager = ContextCompat.getSystemService(
         appContext,

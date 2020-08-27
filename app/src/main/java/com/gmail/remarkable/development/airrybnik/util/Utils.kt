@@ -3,6 +3,7 @@ package com.gmail.remarkable.development.airrybnik.util
 import android.content.Context
 import android.widget.RemoteViews
 import com.gmail.remarkable.development.airrybnik.R
+import kotlin.math.roundToInt
 
 /**
  * Returns appropriate color based on the progress value.
@@ -29,9 +30,13 @@ fun getIndicatorProgressColor(progress: Int): Int {
 /**
  * Returns RemoteViews to update appWidget.
  */
-fun setupRemoteViewsForUpdate(value: String, date: String?, context: Context): RemoteViews {
+fun setupRemoteViewsForUpdate(value: Double, date: String?, context: Context): RemoteViews {
     return RemoteViews(context.packageName, R.layout.chart_layout_v_app_widget).apply {
-        setTextViewText(R.id.widget_percentage_textView, value)
-        setProgressBar(R.id.widget_percentage_progressbar, 100, value.toInt(), false)
+        val percentage = value.roundToInt().times(100).div(50)
+        setTextViewText(
+            R.id.widget_percentage_textView,
+            context.getString(R.string.percentage_value, percentage)
+        )
+        setProgressBar(R.id.widget_percentage_progressbar, 100, percentage, false)
     }
 }

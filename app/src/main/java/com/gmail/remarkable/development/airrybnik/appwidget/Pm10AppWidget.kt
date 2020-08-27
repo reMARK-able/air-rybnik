@@ -74,7 +74,7 @@ internal fun updateAppWidget(
     value?.let {
         Log.d("PM10AppWidget", "updateAppWidget called")
         // Construct the RemoteViews object
-        val views = setupRemoteViewsForUpdate(value, date, context)
+        val views = setupRemoteViewsForUpdate(value.toDouble(), date, context)
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views)
     }
