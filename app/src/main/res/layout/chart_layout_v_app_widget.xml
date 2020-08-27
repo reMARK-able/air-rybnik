@@ -37,9 +37,8 @@
         android:background="@drawable/pie_chart_circle_top"
         android:elevation="8dp"
         android:gravity="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/secondaryTextColor"
-        android:textSize="20sp"
         tools:text="170%" />
 
 </RelativeLayout>
