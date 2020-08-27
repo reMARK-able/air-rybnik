@@ -5,12 +5,11 @@ import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import android.widget.RemoteViews
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
-import com.gmail.remarkable.development.airrybnik.R
 import com.gmail.remarkable.development.airrybnik.data.workers.UpdateAppWidgetWorker
+import com.gmail.remarkable.development.airrybnik.util.setupRemoteViewsForUpdate
 
 class Pm10AppWidget : AppWidgetProvider() {
 
@@ -75,12 +74,8 @@ internal fun updateAppWidget(
     value?.let {
         Log.d("PM10AppWidget", "updateAppWidget called")
         // Construct the RemoteViews object
-        val views = RemoteViews(context.packageName, R.layout.pm10_app_widget)
-        views.setTextViewText(R.id.widget_howMany_textView, it)
-        views.setTextViewText(R.id.widget_when_textView, date)
+        val views = setupRemoteViewsForUpdate(value, date, context)
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views)
     }
-
-
 }

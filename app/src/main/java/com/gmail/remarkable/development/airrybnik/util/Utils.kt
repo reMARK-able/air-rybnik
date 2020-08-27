@@ -1,5 +1,7 @@
 package com.gmail.remarkable.development.airrybnik.util
 
+import android.content.Context
+import android.widget.RemoteViews
 import com.gmail.remarkable.development.airrybnik.R
 
 /**
@@ -21,5 +23,15 @@ fun getIndicatorProgressColor(progress: Int): Int {
         in 161..220 -> R.color.colorIndicator_index_sufficient
         in 221..300 -> R.color.colorIndicator_index_bad
         else -> R.color.colorIndicator_index_veryBad
+    }
+}
+
+/**
+ * Returns RemoteViews to update appWidget.
+ */
+fun setupRemoteViewsForUpdate(value: String, date: String?, context: Context): RemoteViews {
+    return RemoteViews(context.packageName, R.layout.chart_layout_v_app_widget).apply {
+        setTextViewText(R.id.widget_percentage_textView, value)
+        setProgressBar(R.id.widget_percentage_progressbar, 100, value.toInt(), false)
     }
 }
