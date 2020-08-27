@@ -7,6 +7,6 @@
         android:shape="ring"
         android:thicknessRatio="6"
         android:useLevel="true">
-        <solid android:color="?colorControlHighlight" />
+        <solid android:color="@color/chart_background_gray" />
     </shape>
 </rotate>

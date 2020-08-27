@@ -9,6 +9,8 @@
     <color name="primaryTextColor">#ffffff</color>
     <color name="secondaryTextColor">#000000</color>
 
+    <color name="chart_background_gray">#1F000000</color>
+
     <color name="colorIndicator_0">#60ad5e</color>
     <color name="colorIndicator_10">#70b15a</color>
     <color name="colorIndicator_20">#73b259</color>

@@ -38,7 +38,7 @@
         android:elevation="8dp"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="?attr/colorOnSurface"
+        android:textColor="@color/secondaryTextColor"
         android:textSize="20sp"
         tools:text="170%" />
 
