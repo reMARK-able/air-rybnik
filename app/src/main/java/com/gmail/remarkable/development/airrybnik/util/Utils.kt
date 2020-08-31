@@ -51,6 +51,7 @@ fun setupRemoteViewsForUpdate(value: Double, date: String?, context: Context): R
             R.id.widget_percentage_textView,
             context.getString(R.string.percentage_value, percentage)
         )
+        setTextViewText(R.id.widget_label_textView, context.getString(R.string.pm10_label))
         setProgressBar(R.id.widget_percentage_progressbar, 100, percentage, false)
     }
 }
