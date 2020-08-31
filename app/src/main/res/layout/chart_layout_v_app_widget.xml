@@ -24,7 +24,7 @@
         android:paddingBottom="32dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="?android:attr/textColorSecondary"
-        tools:text="PM 10" />
+        tools:text="@string/pm10_label" />
 
     <RelativeLayout
         android:id="@+id/widget_chart_container"
