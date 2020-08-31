@@ -16,7 +16,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="-16dp"
         android:background="@drawable/widget_label_shape"
-        android:elevation="9dp"
+        android:elevation="8dp"
         android:gravity="center"
         android:paddingStart="8dp"
         android:paddingTop="8dp"
