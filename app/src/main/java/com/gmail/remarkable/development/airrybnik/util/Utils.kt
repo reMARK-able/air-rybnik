@@ -34,7 +34,7 @@ fun getIndicatorProgressColor(progress: Int): Int {
  */
 fun setupRemoteViewsForUpdate(value: Double, date: String?, context: Context): RemoteViews {
     return RemoteViews(context.packageName, R.layout.chart_layout_v_app_widget).apply {
-        val percentage = value.roundToInt().times(100).div(50)
+        val percentage = getPm10Percentage(value)
         val setTintMethod = RemoteViews::class.java.getMethod(
             "setProgressTintList",
             Int::class.java,
@@ -55,3 +55,8 @@ fun setupRemoteViewsForUpdate(value: Double, date: String?, context: Context): R
         setProgressBar(R.id.widget_percentage_progressbar, 100, percentage, false)
     }
 }
+
+/**
+ * Calculates percentage of Pm10 acceptable level (50µg/m³).
+ */
+private fun getPm10Percentage(value: Double) = value.roundToInt().times(100).div(50)
