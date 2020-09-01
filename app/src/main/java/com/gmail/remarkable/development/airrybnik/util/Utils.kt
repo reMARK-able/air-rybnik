@@ -1,6 +1,11 @@
 package com.gmail.remarkable.development.airrybnik.util
 
+import android.content.Context
+import android.content.res.ColorStateList
+import android.widget.RemoteViews
+import androidx.core.content.ContextCompat
 import com.gmail.remarkable.development.airrybnik.R
+import kotlin.math.roundToInt
 
 /**
  * Returns appropriate color based on the progress value.
@@ -23,3 +28,35 @@ fun getIndicatorProgressColor(progress: Int): Int {
         else -> R.color.colorIndicator_index_veryBad
     }
 }
+
+/**
+ * Returns RemoteViews to update appWidget.
+ */
+fun setupRemoteViewsForUpdate(value: Double, date: String?, context: Context): RemoteViews {
+    return RemoteViews(context.packageName, R.layout.chart_layout_v_app_widget).apply {
+        val percentage = getPm10Percentage(value)
+        val setTintMethod = RemoteViews::class.java.getMethod(
+            "setProgressTintList",
+            Int::class.java,
+            ColorStateList::class.java
+        )
+        val progressBarColor =
+            ContextCompat.getColor(context, getIndicatorProgressColor(percentage))
+        setTintMethod.invoke(
+            this,
+            R.id.widget_percentage_progressbar,
+            ColorStateList.valueOf(progressBarColor)
+        )
+        setTextViewText(
+            R.id.widget_percentage_textView,
+            context.getString(R.string.percentage_value, percentage)
+        )
+        setTextViewText(R.id.widget_label_textView, context.getString(R.string.pm10_label))
+        setProgressBar(R.id.widget_percentage_progressbar, 100, percentage, false)
+    }
+}
+
+/**
+ * Calculates percentage of Pm10 acceptable level (50µg/m³).
+ */
+private fun getPm10Percentage(value: Double) = value.roundToInt().times(100).div(50)

@@ -4,17 +4,15 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.util.Log
-import android.widget.RemoteViews
 import androidx.hilt.Assisted
 import androidx.hilt.work.WorkerInject
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.gmail.remarkable.development.airrybnik.R
 import com.gmail.remarkable.development.airrybnik.appwidget.Pm10AppWidget
 import com.gmail.remarkable.development.airrybnik.data.Repository
+import com.gmail.remarkable.development.airrybnik.util.setupRemoteViewsForUpdate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlin.math.roundToInt
 
 class UpdateAppWidgetWorker @WorkerInject constructor(
     @Assisted private val appContext: Context,
@@ -30,9 +28,9 @@ class UpdateAppWidgetWorker @WorkerInject constructor(
         return withContext(Dispatchers.IO) {
             try {
                 repository.getLatest()?.let {
-                    val valueString = it.value?.roundToInt().toString()
-                    val dateString = it.date.substringBeforeLast(":")
-                    notifyAppWidget(valueString, dateString)
+                    val value = it.value ?: 0.0
+                    val dateString = it.date
+                    notifyAppWidget(value, dateString)
                 }
                 Result.success()
             } catch (e: Throwable) {
@@ -42,10 +40,8 @@ class UpdateAppWidgetWorker @WorkerInject constructor(
         }
     }
 
-    private fun notifyAppWidget(value: String, date: String) {
-        val views = RemoteViews(appContext.packageName, R.layout.pm10_app_widget)
-        views.setTextViewText(R.id.widget_howMany_textView, value)
-        views.setTextViewText(R.id.widget_when_textView, date)
+    private fun notifyAppWidget(value: Double, date: String) {
+        val views = setupRemoteViewsForUpdate(value, date, appContext)
         val appWidgetManager = AppWidgetManager.getInstance(appContext)
         appWidgetManager.updateAppWidget(
             ComponentName(appContext, Pm10AppWidget::class.java),

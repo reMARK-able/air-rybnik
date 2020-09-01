@@ -14,7 +14,6 @@ import com.gmail.remarkable.development.airrybnik.util.sendNewDataNotification
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
-import kotlin.math.roundToInt
 
 class FetchDataWorker @WorkerInject constructor(
     @Assisted val appContext: Context,
@@ -31,11 +30,11 @@ class FetchDataWorker @WorkerInject constructor(
         return withContext(Dispatchers.IO) {
             try {
                 repository.refreshData()?.let {
-                    val valueString = it.value?.roundToInt().toString()
-                    val dateString = it.date.substringBeforeLast(":")
+                    val value = it.value ?: 0.0
+                    val dateString = it.date
                     // Sends notification on every data fetch. (only for testing purposes).
-                    sendNewDataNotification(appContext, valueString)
-                    notifyAppWidget(valueString, dateString)
+                    sendNewDataNotification(appContext, value)
+                    notifyAppWidget(value, dateString)
                 }
 
                 Result.success()
@@ -46,7 +45,7 @@ class FetchDataWorker @WorkerInject constructor(
 
     }
 
-    private fun notifyAppWidget(value: String, date: String) {
+    private fun notifyAppWidget(value: Double, date: String) {
         val appWidgetManager = AppWidgetManager.getInstance(appContext)
         val widgetIds =
             appWidgetManager.getAppWidgetIds(ComponentName(appContext, Pm10AppWidget::class.java))
@@ -54,7 +53,7 @@ class FetchDataWorker @WorkerInject constructor(
         val intent = Intent(appContext, Pm10AppWidget::class.java).apply {
             action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
             putExtra(Pm10AppWidget.INTENT_SENSOR_DATE, date)
-            putExtra(Pm10AppWidget.INTENT_SENSOR_VALUE, value)
+            putExtra(Pm10AppWidget.INTENT_SENSOR_VALUE, value.toString())
             putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, widgetIds)
         }
 
